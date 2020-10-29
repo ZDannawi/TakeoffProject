@@ -59,8 +59,10 @@ public class TakeoffUnitTests {
         testAccounts.addTestAccount(1234512323L, 1111, 15000.00);
         account = testAccounts.loadAccount(1234512323L);
         assertEquals(atm.getATMAmount(), 10000, "Initial ATM balance");
-        atm.dispenseAmount(11000);
+        int dispensedAmount = atm.dispenseAmount(11000);
         assertFalse(atm.validateWithdrawalLimit(11000), "Unable to dispense full amount");
         assertEquals(atm.getATMAmount(), 0, "ATM out of money");
+        account.withdraw(dispensedAmount);
+        assertEquals(account.getBalance(), 5000.00, "Transaction adjusted because amount requested was larger than ATM amount");
     }
 }
