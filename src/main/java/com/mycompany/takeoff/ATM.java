@@ -35,7 +35,7 @@ public class ATM {
         return true;
     }
     
-    public int getATMAMount() {
+    public int getATMAmount() {
         return this.ATM_AMOUNT;
     }
     
